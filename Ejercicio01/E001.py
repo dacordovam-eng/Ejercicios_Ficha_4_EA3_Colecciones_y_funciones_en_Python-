@@ -77,6 +77,7 @@ def Agregar_Productos(Inventario):
        "Disponible": False 
    }
    Inventario.append(Producto)
+   print("\u2705\t | Producto agregado con exito.")
     
 
 Inventario = []
