@@ -31,20 +31,75 @@ def Validacion_Nombre(Nombre_Valido):
 
 #Funcion con parametros y con retorno
 def Validacion_Precio(Precio_Valido):
-    try:
-        Precio_Valido = float(Precio_Valido)
-        if Precio_Valido > 0:
-            return True
-        return False
-    except ValueError:
-        print('''\u274c | ¡Error! Ingrese solo números para agregar precio''')
-
+        try:
+            Precio_Valido = float(Precio_Valido)
+            if Precio_Valido > 0:
+                return True
+            return False
+        except ValueError:
+            return False
+    
 #Funcion con parametros y con retorno
 def Validacion_Stock(Stock_Valido):
-    try:
-        Stock_Valido = int(Stock_Valido)
-        if Stock_Valido >= 0:
-            return True
-        return False
-    except ValueError:
-        print("\u274c | ¡Error! Ingrese solo números para agregar Stock")
+        try:
+            Stock_Valido = int(Stock_Valido)
+            if Stock_Valido >= 0:
+                return True
+            return False
+        except ValueError:
+            return False
+        
+#
+def Agregar_Productos(Inventario):
+   print("\n--------- AGREGAR NUEVO PRODUCTO ----------\n")
+   Nombre = input("\tIngrese nombre de producto: ")
+   Precio = input("\tIngrese precio de producto: ")
+   Stock = input("\tIngrese el numero disponible de producto en stock: ")
+
+   if not Validacion_Nombre(Nombre):
+       print('''\u274c | ¡Error! El nombre no puede estar vacío ni ser solo espacios en blanco.
+                ===============================================================================''')
+       return
+   if not Validacion_Precio(Precio):
+        print('''\u274c | ¡Error! El precio debe ser un número decimal mayor que cero.
+                =====================================================================''')
+        return
+   
+   if not Validacion_Stock(Stock):
+        print('''\u274c | ¡Error! El stock debe ser un número entero mayor o igual a cero.
+                =========================================================================''')
+        return
+
+   Producto = {
+       "Nombre": Nombre.strip(),
+       "Precio": float(Precio),
+       "Stock": int(Stock),
+       "Disponible": False 
+   }
+   Inventario.append(Producto)
+    
+
+Inventario = []
+
+while True:
+    Opciones_menu()
+    Opcion = Seleccion_Opcion_Menu()
+    if Opcion == 1:
+        Agregar_Productos(Inventario)
+    elif Opcion == 2:
+        print("")
+    elif Opcion == 3:
+        print("")
+    elif Opcion == 4:
+        print("")
+    elif Opcion == 5:
+        print("")
+    elif Opcion == 6:
+        print('''\nGracias por usar el sistema de inventario. Hasta pronto\n
+                   =======================================================''')
+        break
+    else:
+        print("\u274c | ¡Error! Ingrese un numero de opcion valido en el menú")
+    
+
+
