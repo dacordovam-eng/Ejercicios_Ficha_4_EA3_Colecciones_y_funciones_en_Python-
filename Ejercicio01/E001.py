@@ -16,7 +16,7 @@ def Opciones_menu():
 def Seleccion_Opcion_Menu():
     while True:
         try:
-            Num_Opcion_menu = int(input("\u274c | Ingrese un número de opción de Menú: "))
+            Num_Opcion_menu = int(input("Ingrese un número de opción de Menú: "))
             if 1 <= Num_Opcion_menu <= 6:
                 return Num_Opcion_menu
             print("\u274c | ¡Error! Ingrese un número entre 1 y 6 del menú")
@@ -57,17 +57,17 @@ def Agregar_Productos(Inventario):
    Stock = input("\tIngrese el numero disponible de producto en stock: ")
 
    if not Validacion_Nombre(Nombre):
-       print('''\u274c | ¡Error! El nombre no puede estar vacío ni ser solo espacios en blanco.
-                ===============================================================================''')
-       return
+        print('''\u274c | ¡Error! El nombre no puede estar vacío ni ser solo espacios en blanco.
+        =======================================================================================''')
+        return
    if not Validacion_Precio(Precio):
         print('''\u274c | ¡Error! El precio debe ser un número decimal mayor que cero.
-                =====================================================================''')
+        =============================================================================''')
         return
    
    if not Validacion_Stock(Stock):
         print('''\u274c | ¡Error! El stock debe ser un número entero mayor o igual a cero.
-                =========================================================================''')
+        =================================================================================''')
         return
 
    Producto = {
@@ -77,7 +77,7 @@ def Agregar_Productos(Inventario):
        "Disponible": False 
    }
    Inventario.append(Producto)
-   print("\u2705\t | Producto agregado con exito.")
+   print("\u2705\t| Producto agregado con exito.")
     
 
 Inventario = []
