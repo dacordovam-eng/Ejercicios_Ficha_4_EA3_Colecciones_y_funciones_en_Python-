@@ -16,12 +16,12 @@ def Opciones_menu():
 def Seleccion_Opcion_Menu():
     while True:
         try:
-            Num_Opcion_menu = int(input("Ingrese un número de opción de Menú: "))
+            Num_Opcion_menu = int(input(" \u2139\ufe0f Ingrese un número de opción de Menú: "))
             if 1 <= Num_Opcion_menu <= 6:
                 return Num_Opcion_menu
-            print("\u274c | ¡Error! Ingrese un número entre 1 y 6 del menú")
+            print("\u274c[¡Error! Ingrese un número entre 1 y 6 del menú]")
         except ValueError:
-            print("\u274c | ¡Error! Ingrese solo números disponibles en Menú de Opciones ")
+            print("\u274c[¡Error! Ingrese solo números disponibles en Menú de Opciones]")
 
 #Funcion con parametros y con retorno 
 def Validacion_Nombre(Nombre_Valido):
