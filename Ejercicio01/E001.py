@@ -25,7 +25,7 @@ def Seleccion_Opcion_Menu():
 
 #Funcion con parametros y con retorno 
 def Validacion_Nombre(Nombre_Valido):
-    if Nombre_Valido.strip() == "":
+    if Nombre_Valido == "":
         return False
     return True
 
@@ -78,7 +78,41 @@ def Agregar_Productos(Inventario):
    }
    Inventario.append(Producto)
    print("\u2705\t| Producto agregado con exito.")
-    
+
+def Buscar_Producto(Inventario, Buscar_Nombre):
+    for i, Producto in enumerate(Inventario):
+        if Producto["Nombre"] == Buscar_Nombre:
+            return i
+    return -1
+
+def Actuzalizar_Disponibilidad(Inventario):
+    if len(Inventario) == 0:
+        print("\u274c|No existen registros que actualizar.")
+        return
+    for Producto in Inventario:
+        if Producto['Stock'] > 0:
+            Producto['Disponible'] = True
+        else:
+            Producto['Disponible'] = False
+    print("\n\u2705|Se ha actualizado la disponibilidad con exito.")
+
+def Mostrar_inventario(Inventario):
+    if len(Inventario) == 0:
+        print("\u274c|No existen registros que Mostrar.")
+        return
+    Actuzalizar_Disponibilidad(Inventario)
+
+    print("\n=====LISTA DE PRODUCTOS=====")
+    for Prod in Inventario:
+        print(f"\tNombre: {Prod['Nombre']}")
+        print(f"\tPrecio: ${Prod['Precio']:,.0f}".replace(",","."))
+        print(f'\tStock: {Prod['Stock']}')
+
+        if Prod['Disponible'] == True:
+            print("\t\u2705|DISPONIBLE")
+        else:
+            print("\t\u274c|NO DISPONIBLE")
+        print("*****************************")
 
 Inventario = []
 
@@ -88,19 +122,34 @@ while True:
     if Opcion == 1:
         Agregar_Productos(Inventario)
     elif Opcion == 2:
-        print("")
+        Busqueda = input("\tIngrese el nombre del producto que desea buscar: ")
+        Posicion_Producto = Buscar_Producto(Inventario, Busqueda)
+
+        if Posicion_Producto != -1:
+            Prod = Inventario[Posicion_Producto]
+            print(f"\u2705¡Producto encontrado en la posicion {Posicion_Producto}")
+            print(f"\tNombre: {Prod['Nombre']}")
+            print(f"\tPrecio: ${Prod['Precio']:,.0f}".replace(",","."))
+        else:
+            print("\u274c|¡Error! Producto no encontrado")
     elif Opcion == 3:
-        print("")
+        Eliminar = input("\tIngrese el nombre del producto que desea eliminar: ")
+        Prod_Eliminar = Buscar_Producto(Inventario, Eliminar)
+
+        if Prod_Eliminar != -1:
+            Producto_A_Borrar = Inventario[Prod_Eliminar]
+            Inventario.pop(Prod_Eliminar)
+            print(f"\u2705|El producto {Producto_A_Borrar['Nombre']}, Fue Eliminado exotosamente.")
+        else:
+            print("\u274c|¡Error! Producto no encontrado")
     elif Opcion == 4:
-        print("")
+        Actuzalizar_Disponibilidad(Inventario)
     elif Opcion == 5:
-        print("")
+        Mostrar_inventario(Inventario)
+
     elif Opcion == 6:
         print('''\nGracias por usar el sistema de inventario. Hasta pronto\n
                    =======================================================''')
         break
     else:
         print("\u274c | ¡Error! Ingrese un numero de opcion valido en el menú")
-    
-
-
